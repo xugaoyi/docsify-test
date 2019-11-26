@@ -1,27 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <style>
+    img {
+      width: 50px;
+    }
+  </style>
 </head>
+
 <body>
   <nav>
     <a href="#/">EN</a>
     <a href="#/zh-cn/">中文</a>
   </nav>
   <div id="app"></div>
+  <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/disqus.min.js"></script>
   <script>
     window.$docsify = {
       name: '',
-      repo: '',
-      loadSidebar: true, // 自定义侧边栏
-      subMaxLevel: 2 // 最大子级目录
+      onlyCover: false,
+      repo: 'https://github.com/xugaoyi/test', // 右上角生成GitHub Corner挂件
+      loadSidebar: true, // 自定义侧边栏，通过 _sidebar.md 配置侧边栏
+      subMaxLevel: 2, // 最大子级目录
+      loadNavbar: true, // 自定义菜单栏，通过 _navbar.md 配置菜单栏
+      coverpage: true, // 自定义封面，通过 _coverpage.md 配置菜单栏
+      //logo: '/media/logo.jpg', // 侧边栏图标
+      name: 'docsify', // 侧边栏标题
+      // themeColor: '#3F51B5', // 主题色
+      search: [ // 搜索
+        '/',            // => /README.md
+        '/guide',       // => /guide.md
+        '/get-started', // => /get-started.md
+        '/zh-cn/',      // => /zh-cn/README.md
+      ],
+      plugins: [ // 在github上编辑
+        EditOnGithubPlugin.create(
+          'https://github.com/docsifyjs/docsify/blob/master/docs/',
+          null,
+          function (file) {
+            if (file.indexOf('en') === -1) {
+              return '编辑'
+            } else {
+              return 'edit on git'
+            }
+          }
+        )
+      ],
+      disqus: 'shortname',
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  
+
 </body>
+
 </html>
